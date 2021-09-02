@@ -11,12 +11,10 @@ class Cliente:
         self.endereco = endereco
 
     def print(self):
-        print("* --------------------------- *")
-        print("id: ", self.id)
-        print("nome: ", self.nome)
-        print("cpf: ", self.cpf)
-        print("telefone: ", self.telefone)
-        print("email: ", self.email)
-        print("endereço: ", self.endereco)
-        print("* --------------------------- *")
+        info = [self.id, self.nome, self.cpf,
+                self.telefone, self.email, self.endereco]
+        print(info)
 
+    def getInfo(self):
+        info = [self.id, self.nome]
+        return info
