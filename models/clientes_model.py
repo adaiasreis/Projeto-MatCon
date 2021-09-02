@@ -1,4 +1,5 @@
 # importar a classe cliente
+from sqlite3.dbapi2 import Cursor
 from utils.clientes import Cliente
 import models.database as db
 
@@ -12,8 +13,8 @@ def getClientes():
     cursor.execute("""SELECT * FROM Clientes;""")
     # Coloca o resultado em uma lista de objetos clientes
     lista_clientes = []
+
     for l in cursor.fetchall():
-        print(l)
         id = l[0]
         nome = l[1]
         cpf = l[2]
@@ -30,6 +31,8 @@ def getClientes():
     return lista_clientes
 
 # Retorna um cliente específico
+
+
 def getCliente(id):
     conn = db.connect_db()
     cursor = conn.cursor()
@@ -37,6 +40,7 @@ def getCliente(id):
     cursor.execute(sql, [id])  # lista de argumentos na mesma ordem das ?s
     # Coloca o resultado em uma lista de objetos clientes
 
+    # erro quando não retorna um cliente!
     l = cursor.fetchall()[0]
     id = l[0]
     nome = l[1]
@@ -53,14 +57,32 @@ def getCliente(id):
 
 
 def addCliente(cliente):
-    sql = """INSERT INTO Clientes (nome,cpf,telefone,email, endereco) 
-                VALUES (?,?,?,?,?);"""
-    print("Novo cliente os campos do cliente")
+    conn = db.connect_db()
+    cursor = conn.cursor()
+    sql = "INSERT INTO Clientes (nome,cpf,telefone,email, endereco)VALUES (?,?,?,?,?);"
+    cursor.execute(sql, [cliente.nome, cliente.cpf,
+                   cliente.telefone, cliente.email, cliente.endereco])
+    # grava os dados no banco de dados
+    conn.commit()
+    conn.close()
 
 
 def editCliente(cliente):
-    print("Edita um cliente os campos do cliente")
-
+    conn = db.connect_db()
+    cursor = conn.cursor()
+    sql = "UPDATE Clientes SET nome=?, cpf=?, telefone=?, email=?, endereco=? WHERE id=?"
+    cursor.execute(sql,[cliente.nome, cliente.cpf, cliente.telefone, cliente.email, cliente.endereco, cliente.id])
+    # grava os dados no banco de dados
+    conn.commit()
+    conn.close()
 
 def delCliente(id):
-    print("Deleta um cliente específico")
+    conn = db.connect_db()
+    cursor = conn.cursor()
+    sql="""DELETE FROM Clientes WHERE id=?"""
+    cursor.execute(sql, [id])
+    # grava os dados no banco de dados
+    conn.commit()
+    conn.close()
+    
+   
