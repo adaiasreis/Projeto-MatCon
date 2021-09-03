@@ -1,16 +1,14 @@
 # importar a classe cliente
-from sqlite3.dbapi2 import Cursor
 from utils.clientes import Cliente
 import models.database as db
 
 # Pega todos os clientes do banco de dados
-
-
+  
 def getClientes():
     conn = db.connect_db()
     cursor = conn.cursor()
     # executa o comando de seleção dos clientes
-    cursor.execute("""SELECT * FROM Clientes;""")
+    cursor.execute("SELECT * FROM Clientes;")
     # Coloca o resultado em uma lista de objetos clientes
     lista_clientes = []
 
