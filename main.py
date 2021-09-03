@@ -2,7 +2,7 @@
 # Futuramente será substituído pela UI
 
 from models.clientes_model import *
-
+"""uma edição quq""""
 """try:
     lista_clientes = getClientes()
 except Exception as e:
