@@ -1,5 +1,5 @@
 # importar a classe cliente
-from utils.clientes import Cliente
+from utils.cliente import Cliente
 import models.database as db
 
 # Pega todos os clientes do banco de dados

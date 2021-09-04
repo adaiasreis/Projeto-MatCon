@@ -1,0 +1,9 @@
+CREATE TABLE "Clientes" (
+	"id"	INTEGER NOT NULL,
+	"nome"	TEXT NOT NULL,
+	"cpf"	TEXT NOT NULL UNIQUE,
+	"telefone"	TEXT NOT NULL,
+	"email"	TEXT UNIQUE,
+	"endereco"	TEXT NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);

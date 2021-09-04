@@ -1,5 +1,5 @@
 # IMPORTA A CLASSE PRODUTO
-from utils.produtos import Produtos
+from utils.produto import Produto
 import models.database as db
 
 # PEGA TODOS OS PRODUTOS DO BANCO DE DADOS
@@ -16,7 +16,7 @@ def getProdutos():
         precocompra = l[4]
         precovenda = l[5]
         quantidade = l[6]
-        novoProduto = Produtos(id, nome, marca, descricao, precocompra, precovenda, quantidade)
+        novoProduto = Produto(id, nome, marca, descricao, precocompra, precovenda, quantidade)
         lista_produtos.append(novoProduto)
     conn.close()
     return lista_produtos
@@ -34,7 +34,7 @@ def getProduto(id):
     precocompra = l[4]
     precovenda = l[5]
     quantidade = l[6]
-    novoProduto = Produtos(id, nome, marca, descricao, precocompra, precovenda, quantidade)
+    novoProduto = Produto(id, nome, marca, descricao, precocompra, precovenda, quantidade)
     conn.close
     return novoProduto
 
