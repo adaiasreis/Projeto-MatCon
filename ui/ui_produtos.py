@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5 import uic
 
-class ui_produtos(QWidget):
+class CadProdutos(QWidget):
     def __init__(self):
         super().__init__()
-        uic.loadUi("ui_produtos.ui", self)
+        uic.loadUi("ui/ui_produtos.ui", self)
