@@ -6,26 +6,104 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>268</width>
+    <height>205</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>10</y>
-     <width>211</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Produtos</string>
-   </property>
-  </widget>
+  <layout class="QFormLayout" name="formLayout_2">
+   <item row="0" column="0">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="nomeLabel">
+       <property name="text">
+        <string>Nome:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="nome"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="marcaLabel">
+       <property name="text">
+        <string>Marca:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="marca"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="descricaoLabel">
+       <property name="text">
+        <string>Descrição:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="descricao"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="preco_compraLabel">
+       <property name="text">
+        <string>Preço de Compra:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="preco_compra"/>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="preco_vendaLabel">
+       <property name="text">
+        <string>Preço de Venda:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QLineEdit" name="preco_venda"/>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="quantidadeLabel">
+       <property name="text">
+        <string>Quantidade:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="quantidade"/>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="informe">
+     <property name="text">
+      <string>Exclui e adiciona</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="b_salvar">
+       <property name="text">
+        <string>Salvar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="b_excluir">
+       <property name="text">
+        <string>Excluir</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
