@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>544</width>
-    <height>340</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MatCon - Sistema de Gerenciamento</string>
@@ -16,52 +22,33 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>11</x>
-     <y>11</y>
-     <width>165</width>
-     <height>128</height>
+     <x>100</x>
+     <y>70</y>
+     <width>264</width>
+     <height>194</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="leftMargin">
-     <number>10</number>
-    </property>
-    <property name="rightMargin">
-     <number>10</number>
-    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="b_cadProdutos">
-      <property name="enabled">
-       <bool>true</bool>
+     <widget class="QListWidget" name="listWidget">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
       </property>
-      <property name="text">
-       <string>Cadastrar Produtos</string>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="b_cadClientes">
-      <property name="text">
-       <string>Cadastrar Clientes</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="b_listarClientes">
-      <property name="text">
-       <string>Listar Clientes</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="b_listarProdutos">
-      <property name="text">
-       <string>Listar Produtos</string>
-      </property>
-     </widget>
+     <widget class="QStackedWidget" name="stackedWidget"/>
     </item>
    </layout>
-   <zorder>b_cadClientes</zorder>
   </widget>
  </widget>
  <resources/>

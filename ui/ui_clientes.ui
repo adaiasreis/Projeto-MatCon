@@ -6,90 +6,127 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>339</width>
-    <height>170</height>
+    <width>611</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QFormLayout" name="formLayout_2">
-   <item row="0" column="0">
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="nomeLabel">
-       <property name="text">
-        <string>Nome:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="nome"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="cpfLabel">
-       <property name="text">
-        <string>CPF:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="cpf"/>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="telefoneLabel">
-       <property name="text">
-        <string>Telefone:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLineEdit" name="telefone"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="emailLabel">
-       <property name="text">
-        <string>E-mail:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLineEdit" name="email"/>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="enderecoLabel">
-       <property name="text">
-        <string>Endereço:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="endereco"/>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="informe">
-     <property name="text">
-      <string>Exclui e adiciona</string>
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>10</number>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="b_excluir">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
-        <string>Excluir</string>
+        <string>CADASTRO DE CLIENTES</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="b_salvar">
-       <property name="text">
-        <string>Salvar</string>
-       </property>
-      </widget>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="nomeLabel">
+         <property name="text">
+          <string>Nome:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="nome"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="cpfLabel">
+         <property name="text">
+          <string>CPF:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="cpf"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="telefoneLabel">
+         <property name="text">
+          <string>Telefone:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="telefone"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="emailLabel">
+         <property name="text">
+          <string>E-mail:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="email"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="enderecoLabel">
+         <property name="text">
+          <string>Endereço:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="endereco"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="b_excluir">
+         <property name="text">
+          <string>Excluir</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>13</width>
+           <height>24</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Limpar</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="b_salvar">
+         <property name="text">
+          <string>Salvar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
