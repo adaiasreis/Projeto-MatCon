@@ -41,16 +41,16 @@ def getProduto(id):
 def addProduto(produto):
     conn = db.connect_db()
     cursor = conn.cursor()
-    sql = """INSERT INTO produtos (nome, marca, descricao, precocompra, precovenda, quantidade) VALUES (?, ?, ?, ?, ?, ?);"""
-    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.precocompra, produto.precovenda, produto.quantidade])
+    sql = """INSERT INTO produtos (nome, marca, descricao, preco_compra, preco_venda, quantidade) VALUES (?, ?, ?, ?, ?, ?);"""
+    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.preco_compra, produto.preco_venda, produto.quantidade])
     conn.commit()
     conn.close()
 
 def editProduto(produto):
     conn = db.connect_db()
     cursor = conn.cursor()
-    sql = """UPDATE produtos SET nome = ?, marca = ?, descricao = ?, precocompra = ?, precovenda = ?, quantidade = ? WHERE id = ?"""
-    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.precocompra, produto.precovenda, produto.quantidade])
+    sql = """UPDATE produtos SET nome = ?, marca = ?, descricao = ?, preco_compra = ?, preco_venda = ?, quantidade = ? WHERE id = ?"""
+    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.preco_compra, produto.preco_venda, produto.quantidade])
     conn.commit()
     conn.close()
 

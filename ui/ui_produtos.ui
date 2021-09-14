@@ -107,7 +107,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QPushButton" name="b_excluir">
+        <widget class="QPushButton" name="excluir_btn">
          <property name="text">
           <string>Excluir</string>
          </property>
@@ -127,14 +127,14 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="limpar_btn">
          <property name="text">
           <string>Limpar</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="b_salvar">
+        <widget class="QPushButton" name="salvar_btn">
          <property name="text">
           <string>Salvar</string>
          </property>
@@ -146,6 +146,17 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>nome</tabstop>
+  <tabstop>marca</tabstop>
+  <tabstop>descricao</tabstop>
+  <tabstop>preco_compra</tabstop>
+  <tabstop>preco_venda</tabstop>
+  <tabstop>quantidade</tabstop>
+  <tabstop>excluir_btn</tabstop>
+  <tabstop>limpar_btn</tabstop>
+  <tabstop>salvar_btn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
