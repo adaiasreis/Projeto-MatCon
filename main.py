@@ -2,8 +2,8 @@ import sys, os
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
-from ui.ui_produtos import CadProdutos
-from ui.ui_clientes import CadClientes
+from controllers.ui_produtos import CadProdutos
+from controllers.ui_clientes import CadClientes
 
 from qt_material import apply_stylesheet
 
