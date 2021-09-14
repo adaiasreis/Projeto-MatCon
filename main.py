@@ -2,8 +2,8 @@ import sys, os
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
-from controllers.ui_produtos import CadProdutos
-from controllers.ui_clientes import CadClientes
+from layouts.ui_produtos import CadProdutos
+from layouts.ui_clientes import CadClientes
 
 from qt_material import apply_stylesheet
 
@@ -23,6 +23,8 @@ class MainWindow(QMainWindow):
 
         #evento para selecionar a página
         self.listWidget.currentRowChanged.connect(self.display)
+
+
 
     def display(self, index):
         self.stackedWidget.setCurrentIndex(index)
