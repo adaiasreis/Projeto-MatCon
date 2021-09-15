@@ -19,20 +19,23 @@ class MainWindow(QMainWindow):
         self.listWidget.insertItem(0, "PRODUTOS")
         self.listWidget.insertItem(1, "CLIENTES")
         self.listWidget.insertItem(2, "NOVA VENDA")
-        self.listWidget.insertItem(3, "LISTA DE VENDAS")
+        #self.listWidget.insertItem(3, "LISTA DE VENDAS")
 
-        # Stacked
-        self.stackedWidget.addWidget(CadProdutos()) # Pág 0
-        self.stackedWidget.addWidget(CadClientes()) # Pág 1
-        self.stackedWidget.addWidget(NovaVenda()) # Pág 2
-
+        self.carregaJanelas()
+        
         #evento para selecionar a página
         self.listWidget.currentRowChanged.connect(self.display)
 
-
+    def carregaJanelas(self):
+        self.stackedWidget.insertWidget(0,CadProdutos())
+        self.stackedWidget.insertWidget(1,CadClientes())
+        self.stackedWidget.insertWidget(2,NovaVenda())
 
     def display(self, index):
+        #necessário carregar as janelas a cada trasição para atualizar as informações
+        self.carregaJanelas()
         self.stackedWidget.setCurrentIndex(index)
+        
 
 
 app = QApplication(sys.argv)
