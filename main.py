@@ -4,6 +4,7 @@ from PyQt5 import uic
 
 from layouts.ui_produtos import CadProdutos
 from layouts.ui_clientes import CadClientes
+from layouts.ui_vendas import NovaVenda
 
 from qt_material import apply_stylesheet
 
@@ -20,6 +21,7 @@ class MainWindow(QMainWindow):
         # Stacked
         self.stackedWidget.addWidget(CadProdutos()) # Pág 0
         self.stackedWidget.addWidget(CadClientes()) # Pág 1
+        self.stackedWidget.addWidget(NovaVenda()) # Pág 2
 
         #evento para selecionar a página
         self.listWidget.currentRowChanged.connect(self.display)
