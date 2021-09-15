@@ -3,6 +3,8 @@ from PyQt5 import uic
 
 import models.clientes_model as ClientesModel
 import models.produtos_model as ProdutosModel
+from ui.table_itens_vendas import TabelaItens
+from utils.item_venda import ItemVenda
 
 
 class NovaVenda(QWidget):
@@ -11,6 +13,7 @@ class NovaVenda(QWidget):
         uic.loadUi("ui/ui_novavenda.ui", self)
 
         self.clienteAtual = None
+        self.produtoAtual = None
         self.lista_clientes = []
         self.lista_produtos = []
 
@@ -18,6 +21,10 @@ class NovaVenda(QWidget):
 
         self.carregaDadosClientes()
         self.carregaDadosProdutos()
+
+        # classe para o controle do QTableWidget
+        self.tabelaItens = TabelaItens(self.tableWidget)
+        
 
     def carregaDadosClientes(self):
         # dados do cliente
@@ -40,11 +47,25 @@ class NovaVenda(QWidget):
         self.combo_clientes.currentIndexChanged.connect(self.index_changed_cliente)
         self.combo_produtos.currentIndexChanged.connect(self.index_changed_produto)
 
+        # botão add item
+        self.btn_add_item.clicked.connect(self.addItem)
+
+    # CLIENTE
     def index_changed_cliente(self, i):  # i é a posição do item selecionado
         print(self.lista_clientes[i].nome)
         # a lista do comboBox e a lista de clientes possuem o mesmo tamanho e itens, logo são iguais e podemos pegar o mesmo item da lista, o objeto cliente desejado
         self.clienteAtual = self.lista_clientes[i]
         self.id_lineEdit.setText(str(self.lista_clientes[i].id))
     
+    # PRODUTO
     def index_changed_produto(self, i):  # i é a posição do item selecionado
-        print(self.lista_produtos[i].nome)
+        self.produtoAtual = self.lista_produtos[i]
+        self.marca.setText(self.lista_produtos[i].marca)
+        self.valor.setText(str(self.lista_produtos[i].preco_venda))
+        self.qtd_disp.setText(str(self.lista_produtos[i].quantidade))
+        self.desc.setText(self.lista_produtos[i].descricao)
+    
+    # adiciona um item na tabela
+    def addItem(self):
+        item = ItemVenda(self.qtd.text(), self.produtoAtual)
+        self.tabelaItens._addRow(item)
