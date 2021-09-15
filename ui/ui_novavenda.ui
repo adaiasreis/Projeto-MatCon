@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>965</width>
-    <height>600</height>
+    <height>734</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -362,6 +362,9 @@
            </item>
            <item>
             <widget class="QPushButton" name="btn_remover_item">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Remover Item</string>
              </property>

@@ -3,8 +3,9 @@ from PyQt5.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem
 from utils.item_venda import ItemVenda
 
 class TabelaItens():
-    def __init__(self, tableWidget):
+    def __init__(self, tableWidget, parent):
         self.tableWidget = tableWidget
+        self.parent = parent
 
         self.itemAtual = None
 
@@ -32,6 +33,7 @@ class TabelaItens():
         # linha onde foi clicado
         selected_row = self.tableWidget.currentRow()
         self.itemAtual = self.listaItens[selected_row]
+        self.parent.btn_remover_item.setEnabled(True)
 
     def _addRow(self, item):
         self.listaItens.append(item)
@@ -47,3 +49,23 @@ class TabelaItens():
         self.tableWidget.setItem(rowCount, 1, nome_produto)
         self.tableWidget.setItem(rowCount, 2, uni)
         self.tableWidget.setItem(rowCount, 3, valor)
+    
+    def limparItens(self):
+        self.tableWidget.setRowCount(0)
+        self.itemAtual = None
+        self.listaItens = []
+        self.parent.btn_remover_item.setEnabled(False)
+    
+    def limparSelecionado(self):
+        self.listaItens.remove(self.itemAtual)
+        novaLista = self.listaItens
+
+        self.limparItens()
+
+        #adiciona os elementos novamente na tabela
+        for p in novaLista:
+            self._addRow(p)
+
+
+        
+
