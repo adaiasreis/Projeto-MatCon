@@ -76,6 +76,7 @@ class NovaVenda(QWidget):
     def addItem(self):
         item = ItemVenda(self.qtd.text(), self.produtoAtual)
         self.tabelaItens._addRow(item)
+        self.btn_limpar_itens.setEnabled(True)
 
     # adiciona um item na tabela
     def limparItens(self):

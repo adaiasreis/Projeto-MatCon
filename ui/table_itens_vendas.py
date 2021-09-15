@@ -55,13 +55,15 @@ class TabelaItens():
         self.itemAtual = None
         self.listaItens = []
         self.parent.btn_remover_item.setEnabled(False)
+        self.parent.btn_limpar_itens.setEnabled(False)
+            
     
     def limparSelecionado(self):
         self.listaItens.remove(self.itemAtual)
         novaLista = self.listaItens
 
         self.limparItens()
-
+        self.parent.btn_limpar_itens.setEnabled(True) #a lista não está vazia, logo pode limpar todos
         #adiciona os elementos novamente na tabela
         for p in novaLista:
             self._addRow(p)

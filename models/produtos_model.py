@@ -50,7 +50,7 @@ def editProduto(produto):
     conn = db.connect_db()
     cursor = conn.cursor()
     sql = """UPDATE produtos SET nome = ?, marca = ?, descricao = ?, preco_compra = ?, preco_venda = ?, quantidade = ? WHERE id = ?"""
-    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.preco_compra, produto.preco_venda, produto.quantidade])
+    cursor.execute(sql,[produto.nome, produto.marca, produto.descricao, produto.preco_compra, produto.preco_venda, produto.quantidade, produto.id])
     conn.commit()
     conn.close()
 
