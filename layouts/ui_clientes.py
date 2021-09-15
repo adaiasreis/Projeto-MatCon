@@ -64,7 +64,7 @@ class CadClientes(QWidget):
         self.email.setText("")
         self.endereco.setText("")
 
-        self.salvar_btn.setText("Novo")
+        self.salvar_btn.setText("Salvar")
         self.excluir_btn.setEnabled(False)
 
     # utilizado para preencher os campos na janela principal

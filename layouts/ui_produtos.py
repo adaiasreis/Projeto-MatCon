@@ -65,7 +65,7 @@ class CadProdutos(QWidget):
         self.preco_venda.setText("")
         self.quantidade.setText("")
 
-        self.salvar_btn.setText("Novo")
+        self.salvar_btn.setText("Salvar")
         self.excluir_btn.setEnabled(False)
 
     # utilizado para preencher os campos na janela principal

@@ -8,6 +8,18 @@ from layouts.ui_vendas import NovaVenda
 
 from qt_material import apply_stylesheet
 
+def tema(app):
+    # Open the qss styles file and read in the css-alike styling code
+    breeze_light = 'style/light/stylesheet.qss'
+    breeze_dark = 'style/dark/stylesheet.qss'
+    meu_style = 'style/my_style.qss'
+    with open(meu_style, 'r') as f:
+        style = f.read()
+
+        # Set the stylesheet of the application
+        app.setStyleSheet(style)
+
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -43,7 +55,6 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-# aplicar o tema no programa
 apply_stylesheet(app, theme='dark_blue.xml')
 
 window = MainWindow()
