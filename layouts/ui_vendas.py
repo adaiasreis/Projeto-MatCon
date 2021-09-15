@@ -10,7 +10,7 @@ class NovaVenda(QWidget):
         uic.loadUi("ui/ui_novavenda.ui", self)
 
         self.carregaDadosClientes()
-        self.carregaDadosProdutos()
+        #self.carregaDadosProdutos()
 
     def carregaDadosClientes(self):
         # dados do cliente
@@ -19,12 +19,5 @@ class NovaVenda(QWidget):
         for c in lista:
             lista_combo.append(str(c.id) + " - "+c.nome)
         self.combo_clientes.addItems(lista_combo)
-    
-    def carregaDadosProdutos(self):
-        # dados do cliente
-        lista = ProdutosModel.getProdutos()
-        lista_combo = []
-        for c in lista:
-            lista_combo.append(str(c.id) + " - "+c.nome)
-        self.combo_produtos.addItems(lista_combo)
+
 

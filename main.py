@@ -1,5 +1,5 @@
-import sys, os
-from PyQt5.QtWidgets import QApplication, QMainWindow
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow 
 from PyQt5 import uic
 
 from layouts.ui_produtos import CadProdutos
@@ -8,10 +8,13 @@ from layouts.ui_vendas import NovaVenda
 
 from qt_material import apply_stylesheet
 
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("mainwindow.ui", self)
+        uic.loadUi("ui/mainwindow.ui", self)
+
         # define os eventos dos botões
         self.listWidget.insertItem(0, "PRODUTOS")
         self.listWidget.insertItem(1, "CLIENTES")
