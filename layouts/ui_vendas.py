@@ -1,5 +1,8 @@
 from PyQt5.QtWidgets import QWidget
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import QRegExp
 from PyQt5 import uic
+
 
 import models.clientes_model as ClientesModel
 import models.produtos_model as ProdutosModel
@@ -24,6 +27,11 @@ class NovaVenda(QWidget):
 
         # classe para o controle do QTableWidget
         self.tabelaItens = TabelaItens(self.tableWidget, self)
+
+        # para valição do campo QUANTIDADE
+        # só é permitido valores inteiros e número com 5 algarismos
+        qtd_validator = QRegExpValidator(QRegExp('^[0-9]{5}$'), self.qtd)
+        self.qtd.setValidator(qtd_validator)
 
     def carregaDadosClientes(self):
         # dados do cliente
@@ -58,7 +66,6 @@ class NovaVenda(QWidget):
         self.btn_remover_item.clicked.connect(self.limparSelecionado)
 
     # CLIENTE
-
     def index_changed_cliente(self, i):  # i é a posição do item selecionado
         # a lista do comboBox e a lista de clientes possuem o mesmo tamanho e itens, logo são iguais e podemos pegar o mesmo item da lista, o objeto cliente desejado
         self.clienteAtual = self.lista_clientes[i]
