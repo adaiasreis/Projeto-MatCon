@@ -31,7 +31,7 @@ class NovaVenda(QWidget):
         # para valição do campo QUANTIDADE
         # só é permitido valores inteiros e número com 5 algarismos
         """"mais exemplos: https://www.programcreek.com/python/example/106688/PyQt5.QtGui.QRegExpValidator"""
-        qtd_validator = QRegExpValidator(QRegExp('^[0-9]{5}$'), self.qtd)
+        qtd_validator = QRegExpValidator(QRegExp('^[1-9]{1}[0-9]{5}$'), self.qtd)
         self.qtd.setValidator(qtd_validator)
 
     def carregaDadosClientes(self):
@@ -73,6 +73,7 @@ class NovaVenda(QWidget):
     def index_changed_cliente(self, i):  # i é a posição do item selecionado
         # a lista do comboBox e a lista de clientes possuem o mesmo tamanho e itens, logo são iguais e podemos pegar o mesmo item da lista, o objeto cliente desejado
         self.clienteAtual = self.lista_clientes[i]
+        # coloca o ID no campo para visualização
         self.id_lineEdit.setText(str(self.lista_clientes[i].id))
 
     # PRODUTO
@@ -102,7 +103,7 @@ class NovaVenda(QWidget):
     # executa a função toda vez que for digitado no campo QUANTIDADE
     def qtd_edited(self, s):
         # habilita o botão de adicionar apenas se estiver a quantidade disponível
-        if int(s) <= self.produtoAtual.quantidade:
+        if s!="" and int(s) <= self.produtoAtual.quantidade:
             self.btn_add_item.setEnabled(True)
         else:
             self.btn_add_item.setEnabled(False)

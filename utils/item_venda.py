@@ -11,4 +11,4 @@ class ItemVenda:
         return self.produto.preco_venda
     
     def getValor(self):
-        return float(self.produto.preco_venda) * float(self.quantidade)
+        return "%.2f" % (float(self.produto.preco_venda) * float(self.quantidade))

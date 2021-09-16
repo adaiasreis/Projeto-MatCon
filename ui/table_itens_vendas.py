@@ -4,11 +4,11 @@ from utils.item_venda import ItemVenda
 
 class TabelaItens():
     def __init__(self, tableWidget, parent):
+        # ATRIBUTO DA CLASSE
         self.tableWidget = tableWidget
         self.parent = parent
 
         self.itemAtual = None
-
         self.listaItens = []
 
         # Configuração da tabela
@@ -54,6 +54,7 @@ class TabelaItens():
         self.tableWidget.setRowCount(0)
         self.itemAtual = None
         self.listaItens = []
+        #desativo os botões
         self.parent.btn_remover_item.setEnabled(False)
         self.parent.btn_limpar_itens.setEnabled(False)
             
