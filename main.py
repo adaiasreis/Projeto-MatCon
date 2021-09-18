@@ -1,4 +1,4 @@
-import sys
+import sys, os
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 
@@ -7,6 +7,9 @@ from layouts.ui_clientes import CadClientes
 from layouts.ui_vendas import NovaVenda
 
 from qt_material import apply_stylesheet
+
+# CONFIGURAÇÃO DO LINUX
+os.environ['XDG_SESSION_TYPE'] = 'Wayland'
 
 def tema(app):
     # Open the qss styles file and read in the css-alike styling code
@@ -19,6 +22,16 @@ def tema(app):
         # Set the stylesheet of the application
         app.setStyleSheet(style)
 
+extra = {
+
+    # Button colors
+    'danger': '#dc3545',
+    'warning': '#ffc107',
+    'success': '#17a2b8',
+
+    # Font
+    'font-family': 'Roboto',
+}
 
 
 class MainWindow(QMainWindow):
@@ -55,7 +68,8 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-apply_stylesheet(app, theme='dark_blue.xml')
+apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
+#tema(app)
 
 window = MainWindow()
 window.show()

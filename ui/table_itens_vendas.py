@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem
+from PyQt5.QtGui import QRegExpValidator
+from PyQt5.QtCore import QRegExp
 
-from utils.item_venda import ItemVenda
 
 class TabelaItens():
     def __init__(self, tableWidget, parent):
@@ -35,6 +36,7 @@ class TabelaItens():
         self.itemAtual = self.listaItens[selected_row]
         self.parent.btn_remover_item.setEnabled(True)
 
+    # item - Objeto ItemVenda
     def _addRow(self, item):
         self.listaItens.append(item)
         rowCount = self.tableWidget.rowCount()
@@ -49,26 +51,47 @@ class TabelaItens():
         self.tableWidget.setItem(rowCount, 1, nome_produto)
         self.tableWidget.setItem(rowCount, 2, uni)
         self.tableWidget.setItem(rowCount, 3, valor)
-    
+
+        self.calculaValorTotal()
+
+    def calculaValorTotal(self):
+        valorTotal = 0
+        desconto = self.parent.desconto.text()
+        if desconto == "":
+            desconto = "0"
+
+        # calcula o valor total
+        for item in self.listaItens:
+            valorTotal += (float(item.getValor()))
+
+        # aplica o desconto
+        desconto = float(desconto)  # converte para float
+        if desconto < valorTotal:
+            valorTotal = valorTotal - desconto
+        
+        # SE QUISER COLOCAR ALGUMA REGRA PARA O DESCONTO FAZER AQUI
+        # EX.: O DESCONTO NÃO PODE SER MAIOR QUE 50% DO VALOR DO PRODUTO
+        # EX.: APLICAR O DESCONTO DE 10%
+
+        self.parent.valor_total.setText("%.2f" % valorTotal)
+
     def limparItens(self):
         self.tableWidget.setRowCount(0)
         self.itemAtual = None
         self.listaItens = []
-        #desativo os botões
+        # desativo os botões
         self.parent.btn_remover_item.setEnabled(False)
         self.parent.btn_limpar_itens.setEnabled(False)
-            
-    
+        #recarrea o combobox dos produtos
+        self.parent.carregaDadosProdutos()
+
     def limparSelecionado(self):
         self.listaItens.remove(self.itemAtual)
         novaLista = self.listaItens
 
         self.limparItens()
-        self.parent.btn_limpar_itens.setEnabled(True) #a lista não está vazia, logo pode limpar todos
-        #adiciona os elementos novamente na tabela
+        # a lista não está vazia, logo pode limpar todos
+        self.parent.btn_limpar_itens.setEnabled(True)
+        # adiciona os elementos novamente na tabela
         for p in novaLista:
             self._addRow(p)
-
-
-        
-

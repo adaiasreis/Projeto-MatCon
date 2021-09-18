@@ -31,18 +31,25 @@ class NovaVenda(QWidget):
         # para valição do campo QUANTIDADE
         # só é permitido valores inteiros e número com 5 algarismos
         """"mais exemplos: https://www.programcreek.com/python/example/106688/PyQt5.QtGui.QRegExpValidator"""
-        qtd_validator = QRegExpValidator(QRegExp('^[1-9]{1}[0-9]{5}$'), self.qtd)
+        qtd_validator = QRegExpValidator(
+            QRegExp('^[1-9]{1}[0-9]{5}$'), self.qtd)
         self.qtd.setValidator(qtd_validator)
+
+        # validação do campo de desconto
+        desconto_validator = QRegExpValidator(
+            QRegExp('^[0-9]+(\.[0-9]{1,2})?$'), self.desconto)
+        self.desconto.setValidator(desconto_validator)
 
     def carregaDadosClientes(self):
         # dados do cliente
         self.lista_clientes = ClientesModel.getClientes()
         lista_combo = []
-        for c in self.lista_clientes:
-            lista_combo.append(c.nome)
+        for cliente in self.lista_clientes:
+            lista_combo.append(cliente.nome)
         self.combo_clientes.addItems(lista_combo)
 
     def carregaDadosProdutos(self):
+        self.combo_produtos.clear()  
         # dados do cliente
         self.lista_produtos = ProdutosModel.getProdutos()
         lista_combo = []
@@ -69,6 +76,12 @@ class NovaVenda(QWidget):
         # verifica a quantidade digitada
         self.qtd.textEdited.connect(self.qtd_edited)
 
+        # atualiza o valor final a partir da atualização do desconto
+        self.desconto.textEdited.connect(self.atualizaValorTotal)
+
+    def atualizaValorTotal(self):
+        self.tabelaItens.calculaValorTotal()
+
     # CLIENTE
     def index_changed_cliente(self, i):  # i é a posição do item selecionado
         # a lista do comboBox e a lista de clientes possuem o mesmo tamanho e itens, logo são iguais e podemos pegar o mesmo item da lista, o objeto cliente desejado
@@ -92,6 +105,21 @@ class NovaVenda(QWidget):
         self.btn_add_item.setEnabled(False)
         self.qtd.setText("")
 
+        # REDUZ TEMPORARIAMENTE A QUANTIDADE DO ITEM NA LISTA DE PRODUTOS
+        index = self.lista_produtos.index(self.produtoAtual)
+        p = self.lista_produtos[index]
+        p.quantidade = item.novaQtd()
+
+        #ATUALIZA A LISTA DE PRODUTOS
+        self.atualizaListaProdutos()
+    
+    def atualizaListaProdutos(self):
+        self.combo_produtos.clear()  
+        lista_combo = []
+        for c in self.lista_produtos:
+            lista_combo.append(c.nome)
+        self.combo_produtos.addItems(lista_combo)
+
     # adiciona um item na tabela
     def limparItens(self):
         self.tabelaItens.limparItens()
@@ -103,7 +131,7 @@ class NovaVenda(QWidget):
     # executa a função toda vez que for digitado no campo QUANTIDADE
     def qtd_edited(self, s):
         # habilita o botão de adicionar apenas se estiver a quantidade disponível
-        if s!="" and int(s) <= self.produtoAtual.quantidade:
+        if s != "" and int(s) <= self.produtoAtual.quantidade:
             self.btn_add_item.setEnabled(True)
         else:
             self.btn_add_item.setEnabled(False)

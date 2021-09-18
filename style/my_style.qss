@@ -1,10 +1,7 @@
+
 QLineEdit
 {
-    background-color: #eff0f1;
-    padding: 0.23em;
-    border-style: solid;
-    border: 0.04em solid #bab9b8;
-    border-radius: 0.09em;
-    color: #31363b;
+    
+    min-height: 30px;
+    margin-right: 8px;
 }
-QPushButton { color: red }

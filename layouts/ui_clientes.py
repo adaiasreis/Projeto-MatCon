@@ -23,8 +23,11 @@ class CadClientes(QWidget):
 
     # define os eventos de todos os botões
     def setEventos(self):
+        self.salvar_btn.setProperty('class', 'success')
         self.salvar_btn.clicked.connect(self.salvarCliente)
+        self.limpar_btn.setProperty('class', 'warning')
         self.limpar_btn.clicked.connect(self.limpaCampos)
+        self.excluir_btn.setProperty('class', 'danger')
         self.excluir_btn.clicked.connect(self.excluirItem)
 
     def salvarCliente(self):
