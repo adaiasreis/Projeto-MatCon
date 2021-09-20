@@ -5,3 +5,17 @@ QLineEdit
     min-height: 30px;
     margin-right: 8px;
 }
+/*** Tables ***/
+
+QTableView {
+    selection-color: #1F57A1;
+    selection-background-color: #CADDF5;
+    border: 1px solid #E5E5E5;
+}
+
+QHeaderView::section {
+    background-color: #F8F8F8;
+    padding: 4px;
+    border-style: none;
+    text-align: left;
+}

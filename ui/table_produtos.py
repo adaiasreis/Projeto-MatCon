@@ -28,6 +28,8 @@ class TabelaProdutos(QTableWidget):
         # ajusta as colunas ao tamanho da tela
         self.horizontalHeader().setStretchLastSection(False)
         self.horizontalHeader().setSectionResizeMode(
+            QHeaderView.ResizeToContents)
+        self.horizontalHeader().setSectionResizeMode(1,
             QHeaderView.Stretch)
         # desabilita a edição dos campos
         self.setEditTriggers(QTableWidget.NoEditTriggers)

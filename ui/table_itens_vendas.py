@@ -22,7 +22,10 @@ class TabelaItens():
         # ajusta as colunas ao tamanho da tela
         self.tableWidget.horizontalHeader().setStretchLastSection(False)
         self.tableWidget.horizontalHeader().setSectionResizeMode(
+            QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(1,
             QHeaderView.Stretch)
+        
         # desabilita a edição dos campos
         self.tableWidget.setEditTriggers(QTableWidget.NoEditTriggers)
         # seleciona toda a linha
