@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import QRegExp
+from PyQt5.QtCore import QRegExp, QDate
 from PyQt5 import uic
 
 
@@ -10,6 +10,8 @@ import models.vendas_model as VendasModel
 from ui.table_itens_vendas import TabelaItens
 from utils.item_venda import ItemVenda
 from utils.venda import Venda
+
+from datetime import date
 
 
 class NovaVenda(QWidget):
@@ -41,6 +43,9 @@ class NovaVenda(QWidget):
         desconto_validator = QRegExpValidator(
             QRegExp('^[0-9]+(\.[0-9]{1,2})?$'), self.desconto)
         self.desconto.setValidator(desconto_validator)
+        
+        # atribui a data atual do sistema no QDateEdit
+        self.dateEdit.setDate(QDate.currentDate())
 
     def carregaDadosClientes(self):
         # dados do cliente
@@ -142,11 +147,13 @@ class NovaVenda(QWidget):
             self.btn_add_item.setEnabled(False)
 
     def finalizaVenda(self):
+        data = self.dateEdit.dateTime().toString('dd/MM/yyyy')
+        print(data)
         cliente = self.clienteAtual
         lista_de_itens = self.tabelaItens.listaItens
         valor_total = self.valor_total.text()
         # criado o objeto
-        novaVenda = Venda(-1,cliente, lista_de_itens, valor_total)
-        #armazenar no banco
+        novaVenda = Venda(-1, cliente, lista_de_itens, valor_total)
+        # armazenar no banco
         VendasModel.addVenda(novaVenda)
-        #limpar todos campos
+        # limpar todos campos
