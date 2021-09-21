@@ -1,5 +1,5 @@
 import sys, os
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QHBoxLayout, QWidget, QListWidgetItem
 from PyQt5 import uic
 
 from layouts.ui_produtos import CadProdutos
@@ -32,6 +32,20 @@ extra = {
     'font-family': 'Roboto',
 }
 
+# ICONE CUSTOMIADO PARA A LISTA - ALTERE COMO DESEJAR - PODE IMPORTAR UM .UI NORMALMENTE 
+class CustomQWidget(QWidget):
+    def __init__(self, icon, text, parent=None):
+        super(CustomQWidget, self).__init__(parent)
+
+        label_icon = QLabel(icon)
+        label_text = QLabel(text)
+
+        layout = QHBoxLayout()
+        layout.addWidget(label_icon)
+        layout.addWidget(label_text)
+        layout.addWidget(label_icon)
+
+        self.setLayout(layout)
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -39,10 +53,25 @@ class MainWindow(QMainWindow):
         uic.loadUi("ui/mainwindow.ui", self)
 
         # define os itens da lista
-        self.listWidget.insertItem(0, "PRODUTOS")
-        self.listWidget.insertItem(1, "CLIENTES")
-        self.listWidget.insertItem(2, "NOVA VENDA")
-        #self.listWidget.insertItem(3, "LISTA DE VENDAS")
+        # itens personalizados
+        item = QListWidgetItem(self.listWidget)
+        item_widget = CustomQWidget("+", "PRODUTOS")
+        item.setSizeHint(item_widget.sizeHint())
+        self.listWidget.insertItem(0,item)
+        self.listWidget.setItemWidget(item, item_widget)
+
+        item = QListWidgetItem(self.listWidget)
+        item_widget = CustomQWidget("+", "CLIENTES")
+        item.setSizeHint(item_widget.sizeHint())
+        self.listWidget.insertItem(1,item)
+        self.listWidget.setItemWidget(item, item_widget)
+        
+        item = QListWidgetItem(self.listWidget)
+        item_widget = CustomQWidget("+", "NOVA VENDA")
+        item.setSizeHint(item_widget.sizeHint())
+        self.listWidget.insertItem(1,item)
+        self.listWidget.setItemWidget(item, item_widget)
+
 
         # seleciona o primeiro item como padrão
         self.listWidget.setCurrentRow(0)
@@ -67,7 +96,7 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
+#apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
 #tema(app)
 
 window = MainWindow()
