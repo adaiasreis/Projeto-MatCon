@@ -96,7 +96,7 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-#apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
+apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
 #tema(app)
 
 window = MainWindow()

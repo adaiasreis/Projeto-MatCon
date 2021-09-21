@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem
-from PyQt5.QtGui import QRegExpValidator
-from PyQt5.QtCore import QRegExp
+from PyQt5.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout, QPushButton
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import Qt, QSize, QRect
 
 
 class TabelaItens():
@@ -19,13 +19,16 @@ class TabelaItens():
 
     def configTable(self):
         self.tableWidget.verticalHeader().setVisible(False)
+        #ajusta a altura das linhas
+        self.tableWidget.verticalHeader().setSectionResizeMode(
+            QHeaderView.ResizeToContents)
         # ajusta as colunas ao tamanho da tela
         self.tableWidget.horizontalHeader().setStretchLastSection(False)
         self.tableWidget.horizontalHeader().setSectionResizeMode(
             QHeaderView.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(1,
-            QHeaderView.Stretch)
-        
+                                                                 QHeaderView.Stretch)
+
         # desabilita a edição dos campos
         self.tableWidget.setEditTriggers(QTableWidget.NoEditTriggers)
         # seleciona toda a linha
@@ -55,6 +58,8 @@ class TabelaItens():
         self.tableWidget.setItem(rowCount, 2, uni)
         self.tableWidget.setItem(rowCount, 3, valor)
 
+        self.tableWidget.setCellWidget(rowCount, 4, CustomQWidget(item,self))
+
         self.calculaValorTotal()
 
     def calculaValorTotal(self):
@@ -71,7 +76,7 @@ class TabelaItens():
         desconto = float(desconto)  # converte para float
         if desconto < valorTotal:
             valorTotal = valorTotal - desconto
-        
+
         # SE QUISER COLOCAR ALGUMA REGRA PARA O DESCONTO FAZER AQUI
         # EX.: O DESCONTO NÃO PODE SER MAIOR QUE 50% DO VALOR DO PRODUTO
         # EX.: APLICAR O DESCONTO DE 10%
@@ -85,8 +90,9 @@ class TabelaItens():
         # desativo os botões
         self.parent.btn_remover_item.setEnabled(False)
         self.parent.btn_limpar_itens.setEnabled(False)
-        #recarrea o combobox dos produtos
+        # recarrea o combobox dos produtos
         self.parent.carregaDadosProdutos()
+        self.calculaValorTotal()
 
     def limparSelecionado(self):
         self.listaItens.remove(self.itemAtual)
@@ -98,3 +104,28 @@ class TabelaItens():
         # adiciona os elementos novamente na tabela
         for p in novaLista:
             self._addRow(p)
+
+
+class CustomQWidget(QWidget):
+    def __init__(self, item, parent):
+        super(CustomQWidget, self).__init__()
+        self.item = item
+        self.parent = parent
+        self.btn = QPushButton(self)
+        self.btn.setText("")          #text
+        self.btn.setIcon(QIcon("icons/delete.png"))  # icon
+        self.btn.setShortcut('Ctrl+D')  # shortcut key
+        self.btn.clicked.connect(self.remover)
+        self.btn.setToolTip("Remover item "+str(self.item.produto.nome)+"?")  # Tool tip
+        self.btn.setStyleSheet('QPushButton {background-color: #00FFFFFF; border:  none}') #remove a cor de fundo do botão e a borda
+        self.btn.setIconSize(QSize(20,20))
+        
+        layout = QHBoxLayout()
+        layout.setContentsMargins(0, 0, 0, 10)
+        layout.addWidget(self.btn)
+        self.setLayout(layout)
+
+    def remover(self):
+        self.parent.itemAtual = self.item
+        self.parent.limparSelecionado()
+        print("Remover o item: ", self.item.produto.nome)

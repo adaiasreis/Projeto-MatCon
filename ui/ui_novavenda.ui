@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>965</width>
-    <height>852</height>
+    <height>921</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -346,6 +346,20 @@
               <weight>75</weight>
               <bold>true</bold>
               <strikeout>false</strikeout>
+             </font>
+            </property>
+            <property name="textAlignment">
+             <set>AlignCenter</set>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Ação</string>
+            </property>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
             </property>
             <property name="textAlignment">
