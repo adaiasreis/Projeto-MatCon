@@ -6,8 +6,10 @@ from PyQt5 import uic
 
 import models.clientes_model as ClientesModel
 import models.produtos_model as ProdutosModel
+import models.vendas_model as VendasModel
 from ui.table_itens_vendas import TabelaItens
 from utils.item_venda import ItemVenda
+from utils.venda import Venda
 
 
 class NovaVenda(QWidget):
@@ -49,7 +51,7 @@ class NovaVenda(QWidget):
         self.combo_clientes.addItems(lista_combo)
 
     def carregaDadosProdutos(self):
-        self.combo_produtos.clear()  
+        self.combo_produtos.clear()
         # dados do cliente
         self.lista_produtos = ProdutosModel.getProdutos()
         lista_combo = []
@@ -78,6 +80,9 @@ class NovaVenda(QWidget):
 
         # atualiza o valor final a partir da atualização do desconto
         self.desconto.textEdited.connect(self.atualizaValorTotal)
+
+        # finaliza a venda (salva os dados)
+        self.finalizaVenda_btn.clicked.connect(self.finalizaVenda)
 
     def atualizaValorTotal(self):
         self.tabelaItens.calculaValorTotal()
@@ -110,11 +115,11 @@ class NovaVenda(QWidget):
         p = self.lista_produtos[index]
         p.quantidade = item.novaQtd()
 
-        #ATUALIZA A LISTA DE PRODUTOS
+        # ATUALIZA A LISTA DE PRODUTOS
         self.atualizaListaProdutos()
-    
+
     def atualizaListaProdutos(self):
-        self.combo_produtos.clear()  
+        self.combo_produtos.clear()
         lista_combo = []
         for c in self.lista_produtos:
             lista_combo.append(c.nome)
@@ -135,3 +140,13 @@ class NovaVenda(QWidget):
             self.btn_add_item.setEnabled(True)
         else:
             self.btn_add_item.setEnabled(False)
+
+    def finalizaVenda(self):
+        cliente = self.clienteAtual
+        lista_de_itens = self.tabelaItens.listaItens
+        valor_total = self.valor_total.text()
+        # criado o objeto
+        novaVenda = Venda(-1,cliente, lista_de_itens, valor_total)
+        #armazenar no banco
+        VendasModel.addVenda(novaVenda)
+        #limpar todos campos

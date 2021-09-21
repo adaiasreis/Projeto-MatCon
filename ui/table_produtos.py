@@ -29,8 +29,7 @@ class TabelaProdutos(QTableWidget):
         self.horizontalHeader().setStretchLastSection(False)
         self.horizontalHeader().setSectionResizeMode(
             QHeaderView.ResizeToContents)
-        self.horizontalHeader().setSectionResizeMode(1,
-            QHeaderView.Stretch)
+        self.horizontalHeader().setSectionResizeMode(1,QHeaderView.Stretch)
         # desabilita a edição dos campos
         self.setEditTriggers(QTableWidget.NoEditTriggers)
         # seleciona toda a linha

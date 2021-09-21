@@ -23,7 +23,6 @@ def tema(app):
         app.setStyleSheet(style)
 
 extra = {
-
     # Button colors
     'danger': '#dc3545',
     'warning': '#ffc107',
