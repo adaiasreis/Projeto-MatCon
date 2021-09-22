@@ -15,6 +15,6 @@ class Venda():
     def getItens(self):
         return self.lista_de_itens
     
-    def valorTotal(self):
+    def getValorTotal(self):
         return self.valor_total
     
