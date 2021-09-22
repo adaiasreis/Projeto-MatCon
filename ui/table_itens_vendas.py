@@ -19,7 +19,7 @@ class TabelaItens():
 
     def configTable(self):
         self.tableWidget.verticalHeader().setVisible(False)
-        #ajusta a altura das linhas
+        # ajusta a altura das linhas
         self.tableWidget.verticalHeader().setSectionResizeMode(
             QHeaderView.ResizeToContents)
         # ajusta as colunas ao tamanho da tela
@@ -49,16 +49,20 @@ class TabelaItens():
         self.tableWidget.insertRow(rowCount)
         # fixa a linha e muda a coluna conforme os valores
         qtd = QTableWidgetItem(str(item.quantidade))
+        qtd.setTextAlignment(Qt.AlignCenter)  # centraliza o campo
         nome_produto = QTableWidgetItem(item.getNomeProduto())
         uni = QTableWidgetItem(str(item.getValorUnitario()))
+        uni.setTextAlignment(Qt.AlignCenter)
         valor = QTableWidgetItem(str(item.getValor()))
+        valor.setTextAlignment(Qt.AlignCenter)
         # insere os itens na tabela
         self.tableWidget.setItem(rowCount, 0, qtd)
         self.tableWidget.setItem(rowCount, 1, nome_produto)
         self.tableWidget.setItem(rowCount, 2, uni)
+
         self.tableWidget.setItem(rowCount, 3, valor)
 
-        self.tableWidget.setCellWidget(rowCount, 4, CustomQWidget(item,self))
+        self.tableWidget.setCellWidget(rowCount, 4, CustomQWidget(item, self))
 
         self.calculaValorTotal()
 
@@ -80,6 +84,17 @@ class TabelaItens():
         # SE QUISER COLOCAR ALGUMA REGRA PARA O DESCONTO FAZER AQUI
         # EX.: O DESCONTO NÃO PODE SER MAIOR QUE 50% DO VALOR DO PRODUTO
         # EX.: APLICAR O DESCONTO DE 10%
+
+        combo_desc = self.parent.comboBox_desconto.currentText()
+        desconto_combo = 0
+        if combo_desc == "Dinheiro":
+            desconto_combo = valorTotal*0.1
+        elif combo_desc == "Cartão de Crédito":
+            desconto_combo = valorTotal*0.01
+        else:
+            desconto_combo = valorTotal*0.05
+        
+        valorTotal = valorTotal - desconto_combo
 
         self.parent.valor_total.setText("%.2f" % valorTotal)
 
@@ -112,14 +127,17 @@ class CustomQWidget(QWidget):
         self.item = item
         self.parent = parent
         self.btn = QPushButton(self)
-        self.btn.setText("")          #text
+        self.btn.setText("")  # text
         self.btn.setIcon(QIcon("icons/delete.png"))  # icon
         self.btn.setShortcut('Ctrl+D')  # shortcut key
         self.btn.clicked.connect(self.remover)
-        self.btn.setToolTip("Remover item "+str(self.item.produto.nome)+"?")  # Tool tip
-        self.btn.setStyleSheet('QPushButton {background-color: #00FFFFFF; border:  none}') #remove a cor de fundo do botão e a borda
-        self.btn.setIconSize(QSize(20,20))
-        
+        self.btn.setToolTip(
+            "Remover item "+str(self.item.produto.nome)+"?")  # Tool tip
+        # remove a cor de fundo do botão e a borda
+        self.btn.setStyleSheet(
+            'QPushButton {background-color: #00FFFFFF; border:  none}')
+        self.btn.setIconSize(QSize(20, 20))
+
         layout = QHBoxLayout()
         layout.setContentsMargins(0, 0, 0, 10)
         layout.addWidget(self.btn)

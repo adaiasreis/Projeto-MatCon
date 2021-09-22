@@ -1,10 +1,11 @@
 
 class Venda():
-    def __init__(self, id, cliente, lista_de_itens, valor_total):
+    def __init__(self, id, cliente, lista_de_itens, valor_total, data):
         self.id = id
         self.cliente = cliente
         self.lista_de_itens = lista_de_itens 
-        self.valor_total = valor_total 
+        self.valor_total = valor_total
+        self.data = data
     
     # quantidade de itens no carrinho
     def qtdItens(self):

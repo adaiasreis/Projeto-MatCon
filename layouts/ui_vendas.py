@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtCore import QRegExp, QDate
 from PyQt5 import uic
@@ -89,6 +89,9 @@ class NovaVenda(QWidget):
         # finaliza a venda (salva os dados)
         self.finalizaVenda_btn.clicked.connect(self.finalizaVenda)
 
+        #combo de desconto
+        self.comboBox_desconto.currentIndexChanged.connect(self.atualizaValorTotal)
+
     def atualizaValorTotal(self):
         self.tabelaItens.calculaValorTotal()
 
@@ -147,13 +150,14 @@ class NovaVenda(QWidget):
             self.btn_add_item.setEnabled(False)
 
     def finalizaVenda(self):
+        #pega a data em string
         data = self.dateEdit.dateTime().toString('dd/MM/yyyy')
-        print(data)
         cliente = self.clienteAtual
         lista_de_itens = self.tabelaItens.listaItens
         valor_total = self.valor_total.text()
         # criado o objeto
-        novaVenda = Venda(-1, cliente, lista_de_itens, valor_total)
+        novaVenda = Venda(-1, cliente, lista_de_itens, valor_total, data)
         # armazenar no banco
         VendasModel.addVenda(novaVenda)
         # limpar todos campos
+        self.limparItens()
