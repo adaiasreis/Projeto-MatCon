@@ -56,6 +56,8 @@ def getVendas():
         valuesItens = [id_venda]
         cursor.execute(sql_itens, valuesItens)
         for i in cursor.fetchall():
+            # a posição zero, i[0], é o id da venda.
+            # Não precisamos porque já temos esse dado 
             id_produto = i[1]
             qtd = i[2]
             valor_unitario = i[3]

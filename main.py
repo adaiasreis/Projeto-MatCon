@@ -79,8 +79,6 @@ class MainWindow(QMainWindow):
         self.listWidget.insertItem(3,item)
         self.listWidget.setItemWidget(item, item_widget)
 
-
-
         # seleciona o primeiro item como padrão
         self.listWidget.setCurrentRow(0)
 
@@ -95,13 +93,14 @@ class MainWindow(QMainWindow):
             Ou seja, verifica qual o index do listWidget selecionado e insere a janela na respectiva posição """
         self.stackedWidget.insertWidget(0, CadProdutos())
         self.stackedWidget.insertWidget(1, CadClientes())
-        self.stackedWidget.insertWidget(2, Vendas())
+        self.stackedWidget.insertWidget(2, Vendas(self))
         self.stackedWidget.insertWidget(3, NovaVenda())
 
     def display(self, index):
         # necessário carregar as janelas a cada trasição para atualizar as informações
         self.carregaJanelas()
         self.stackedWidget.setCurrentIndex(index)
+        self.listWidget.setCurrentRow(index)
 
 
 app = QApplication(sys.argv)
