@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QHeaderView, QTableWidget, QTableWidgetItem, QWidget, QHBoxLayout, QPushButton
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt, QSize, QRect
-
+from PyQt5.QtCore import Qt, QSize
 
 class TabelaItens():
     def __init__(self, tableWidget, parent):

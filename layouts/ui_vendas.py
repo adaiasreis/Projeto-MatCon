@@ -5,6 +5,8 @@ from PyQt5 import uic
 
 import models.vendas_model as VendasModel
 
+from layouts.ui_info_vendas import InfoVenda
+
 TYPE = {'remove': 0, 'info': 1}
 
 
@@ -22,6 +24,7 @@ class Vendas(QWidget):
 
         self.nova_btn.clicked.connect(self.novaVenda)
 
+    # redireciona para a janela de nova venda
     def novaVenda(self):
         self.parent.display(3)
 
@@ -54,10 +57,14 @@ class Vendas(QWidget):
         self.tableWidget.insertRow(rowCount)
         # fixa a linha e muda a coluna conforme os valores
         id = QTableWidgetItem(str(item.id))
+        id.setTextAlignment(Qt.AlignCenter)
         data = QTableWidgetItem(item.data)
+        data.setTextAlignment(Qt.AlignCenter)
         nome = QTableWidgetItem(item.cliente.nome)
         fone = QTableWidgetItem(item.cliente.telefone)
+        fone.setTextAlignment(Qt.AlignCenter)
         valor = QTableWidgetItem(str(item.getValorTotal()))
+        valor.setTextAlignment(Qt.AlignCenter)
 
         # insere os itens na tabela
         self.tableWidget.setCellWidget(
@@ -72,10 +79,13 @@ class Vendas(QWidget):
 
 
 class CustomQWidget(QWidget):
-    def __init__(self, item, parent, type):
+    def __init__(self, venda, parent, type):
         super(CustomQWidget, self).__init__()
-        self.item = item
+        self.venda = venda
         self.parent = parent
+
+        self.w = None
+
         self.btn = QPushButton(self)
         self.btn.setText("")  # text
 
@@ -87,7 +97,6 @@ class CustomQWidget(QWidget):
         # remove a cor de fundo do botão e a borda
         self.btn.setStyleSheet(
             'QPushButton {background-color: #00FFFFFF; border:  none}')
-        
 
         layout = QHBoxLayout()
         layout.setContentsMargins(0, 0, 0, 10)
@@ -114,4 +123,5 @@ class CustomQWidget(QWidget):
         pass
 
     def maisInfo(self):
-        pass
+        self.w = InfoVenda(self.venda)
+        self.w.show()
