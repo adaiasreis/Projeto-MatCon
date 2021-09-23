@@ -4,7 +4,8 @@ from PyQt5 import uic
 
 from layouts.ui_produtos import CadProdutos
 from layouts.ui_clientes import CadClientes
-from layouts.ui_vendas import NovaVenda
+from layouts.ui_nova_venda import NovaVenda
+from layouts.ui_vendas import Vendas
 
 from qt_material import apply_stylesheet
 
@@ -65,12 +66,19 @@ class MainWindow(QMainWindow):
         item.setSizeHint(item_widget.sizeHint())
         self.listWidget.insertItem(1,item)
         self.listWidget.setItemWidget(item, item_widget)
+
+        item = QListWidgetItem(self.listWidget)
+        item_widget = CustomQWidget("+", "VENDAS")
+        item.setSizeHint(item_widget.sizeHint())
+        self.listWidget.insertItem(2,item)
+        self.listWidget.setItemWidget(item, item_widget)
         
         item = QListWidgetItem(self.listWidget)
         item_widget = CustomQWidget("+", "NOVA VENDA")
         item.setSizeHint(item_widget.sizeHint())
-        self.listWidget.insertItem(1,item)
+        self.listWidget.insertItem(3,item)
         self.listWidget.setItemWidget(item, item_widget)
+
 
 
         # seleciona o primeiro item como padrão
@@ -87,7 +95,8 @@ class MainWindow(QMainWindow):
             Ou seja, verifica qual o index do listWidget selecionado e insere a janela na respectiva posição """
         self.stackedWidget.insertWidget(0, CadProdutos())
         self.stackedWidget.insertWidget(1, CadClientes())
-        self.stackedWidget.insertWidget(2, NovaVenda())
+        self.stackedWidget.insertWidget(2, Vendas())
+        self.stackedWidget.insertWidget(3, NovaVenda())
 
     def display(self, index):
         # necessário carregar as janelas a cada trasição para atualizar as informações
