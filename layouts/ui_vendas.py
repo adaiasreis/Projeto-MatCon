@@ -105,7 +105,6 @@ class CustomQWidget(QWidget):
 
     def typeInfo(self):
         self.btn.setIcon(QIcon("icons/info.png"))  # icon
-        self.btn.setShortcut('Ctrl+I')  # shortcut key
         self.btn.clicked.connect(self.maisInfo)
         self.btn.setToolTip(
             "Mais informações sobre a venda.")  # Tool tip
@@ -113,7 +112,6 @@ class CustomQWidget(QWidget):
 
     def typeDelete(self):
         self.btn.setIcon(QIcon("icons/delete.png"))  # icon
-        self.btn.setShortcut('Ctrl+D')  # shortcut key
         self.btn.clicked.connect(self.remover)
         self.btn.setToolTip(
             "Remover venda?")  # Tool tip

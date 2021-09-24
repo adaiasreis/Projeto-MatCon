@@ -53,6 +53,9 @@
         </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="qtd">
+          <property name="toolTip">
+           <string>Mostra a quantidade de itens.</string>
+          </property>
           <property name="readOnly">
            <bool>true</bool>
           </property>
