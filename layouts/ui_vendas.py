@@ -7,7 +7,9 @@ import models.vendas_model as VendasModel
 
 from layouts.ui_info_vendas import InfoVenda
 
-TYPE = {'remove': 0, 'info': 1}
+#variável global
+TYPE = {'remove': 0, 'info': 1} #dicionário
+
 
 
 class Vendas(QWidget):
@@ -68,19 +70,19 @@ class Vendas(QWidget):
 
         # insere os itens na tabela
         self.tableWidget.setCellWidget(
-            rowCount, 0, CustomQWidget(item, self, TYPE['info']))
+            rowCount, 0, MeuBotao(item, self, TYPE['info']))
         self.tableWidget.setItem(rowCount, 1, id)
         self.tableWidget.setItem(rowCount, 2, data)
         self.tableWidget.setItem(rowCount, 3, nome)
         self.tableWidget.setItem(rowCount, 4, fone)
         self.tableWidget.setItem(rowCount, 5, valor)
         self.tableWidget.setCellWidget(
-            rowCount, 6, CustomQWidget(item, self, TYPE['remove']))
+            rowCount, 6, MeuBotao(item, self, TYPE['remove']))
 
 
-class CustomQWidget(QWidget):
+class MeuBotao(QWidget):
     def __init__(self, venda, parent, type):
-        super(CustomQWidget, self).__init__()
+        super(MeuBotao, self).__init__()
         self.venda = venda
         self.parent = parent
 

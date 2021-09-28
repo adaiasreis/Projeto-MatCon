@@ -23,16 +23,6 @@ def tema(app):
         # Set the stylesheet of the application
         app.setStyleSheet(style)
 
-extra = {
-    # Button colors
-    'danger': '#dc3545',
-    'warning': '#ffc107',
-    'success': '#17a2b8',
-
-    # Font
-    'font-family': 'Roboto',
-}
-
 # ICONE CUSTOMIADO PARA A LISTA - ALTERE COMO DESEJAR - PODE IMPORTAR UM .UI NORMALMENTE 
 class CustomQWidget(QWidget):
     def __init__(self, icon, text, parent=None):
@@ -88,6 +78,12 @@ class MainWindow(QMainWindow):
         # evento para selecionar a página
         self.listWidget.currentRowChanged.connect(self.display)
 
+        self.entrar_btn.clicked.connect(self.iniciarSistema)
+    
+    def iniciarSistema(self):
+        self.stackedWidget_geral.setCurrentIndex(1)
+
+
     def carregaJanelas(self):
         """obs.: é possível carregar as janelas por demanda. 
             Ou seja, verifica qual o index do listWidget selecionado e insere a janela na respectiva posição """
@@ -104,7 +100,7 @@ class MainWindow(QMainWindow):
 
 
 app = QApplication(sys.argv)
-apply_stylesheet(app, theme='dark_blue.xml', extra=extra)
+apply_stylesheet(app, theme='dark_blue.xml')
 #tema(app)
 
 window = MainWindow()

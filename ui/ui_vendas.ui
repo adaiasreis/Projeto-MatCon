@@ -23,6 +23,9 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="toolTip">
+      <string>Aqui você terá todo o histório de vendas da sua empresa.</string>
+     </property>
      <property name="text">
       <string>Histórico de vendas</string>
      </property>
@@ -48,6 +51,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="nova_btn">
+       <property name="toolTip">
+        <string>Botão Nova Venda</string>
+       </property>
        <property name="text">
         <string>Nova Venda</string>
        </property>
