@@ -78,10 +78,15 @@ class MainWindow(QMainWindow):
         # evento para selecionar a página
         self.listWidget.currentRowChanged.connect(self.display)
 
+        #botão de entrar (login)
         self.entrar_btn.clicked.connect(self.iniciarSistema)
+
+        
     
     def iniciarSistema(self):
         self.stackedWidget_geral.setCurrentIndex(1)
+        # https://www.tutorialspoint.com/pyqt/pyqt_qstatusbar_widget.htm
+        self.statusbar.showMessage("Usuário: rafaeltosta")
 
 
     def carregaJanelas(self):
