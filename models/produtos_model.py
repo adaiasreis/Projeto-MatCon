@@ -6,7 +6,7 @@ import models.database as db
 def getProdutos():
     conn = db.connect_db()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Produtos;")
+    cursor.execute("SELECT * FROM Produtos ORDER BY nome;")
     lista_produtos = []
     for l in cursor.fetchall():
         id = l[0]

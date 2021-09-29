@@ -8,7 +8,7 @@ def getClientes():
     conn = db.connect_db()
     cursor = conn.cursor()
     # executa o comando de seleção dos clientes
-    cursor.execute("SELECT * FROM Clientes;")
+    cursor.execute("SELECT * FROM Clientes ORDER BY nome;")
     # Coloca o resultado em uma lista de objetos clientes
     lista_clientes = []
 

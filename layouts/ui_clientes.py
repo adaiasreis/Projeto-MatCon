@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QWidget
 from PyQt5 import uic
 
+
 from utils.cliente import Cliente
 from ui.table_clientes import TabelaClientes
 
@@ -87,3 +88,5 @@ class CadClientes(QWidget):
         self.table.delete(self.clienteAtual)
         # limpa os campos
         self.limpaCampos()
+    
+

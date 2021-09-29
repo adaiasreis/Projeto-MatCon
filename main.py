@@ -84,6 +84,7 @@ class MainWindow(QMainWindow):
         
     
     def iniciarSistema(self):
+        # verifica se o usário existe no banco de
         self.stackedWidget_geral.setCurrentIndex(1)
         # https://www.tutorialspoint.com/pyqt/pyqt_qstatusbar_widget.htm
         self.statusbar.showMessage("Usuário: rafaeltosta")
