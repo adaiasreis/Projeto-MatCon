@@ -8,6 +8,9 @@ import models.clientes_model as ClienteModel
 
 
 def addVenda(venda):
+    """ OLHAR: Gatilhos
+    https://www.sqlitetutorial.net/sqlite-trigger/"""
+
     conn = db.connect_db()
     cursor = conn.cursor()
 
