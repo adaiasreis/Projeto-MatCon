@@ -10,7 +10,7 @@ from layouts.ui_vendas import Vendas
 from qt_material import apply_stylesheet
 
 # CONFIGURAÇÃO DO LINUX
-os.environ['XDG_SESSION_TYPE'] = 'Wayland'
+#os.environ['XDG_SESSION_TYPE'] = 'Wayland'
 
 def tema(app):
     # Open the qss styles file and read in the css-alike styling code
